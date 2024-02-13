@@ -15,6 +15,7 @@ app.get("/api/ping", (_req, res) => {
 
 app.get("/api", (_req, res) => {
   console.log("build api here");
+  console.log('ssh check');
   res.send('this is /api<br>api stands for "application programming interface"');
 });
 
