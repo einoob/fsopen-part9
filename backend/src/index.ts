@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 
+import diagnoseRouter from "./routes/diagnoses";
+
 const app = express();
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 app.use(cors());
@@ -10,8 +12,10 @@ const PORT = 3001;
 
 app.get("/api/ping", (_req, res) => {
   const time = new Date().toLocaleString("fi-FI");
-  res.send(`pong at around${time}`);
+  res.send(`pong at around <b>${time}</b>`);
 });
+
+app.use("/api/diagnoses", diagnoseRouter);
 
 app.get("/api", (_req, res) => {
   console.log("build api here");

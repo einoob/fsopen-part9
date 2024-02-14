@@ -2,12 +2,12 @@
   "name": "patientor-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "scripts": {
     "tsc": "tsc",
     "test": "echo \"type tests!\"",
-    "dev": "ts-node-dev index.ts",
-    "lint": "eslint --ext .ts ."
+    "dev": "ts-node-dev ./src/index.ts",
+    "lint": "eslint --ext .ts ./src"
   },
   "author": "",
   "license": "ISC",
