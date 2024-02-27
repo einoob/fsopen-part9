@@ -8,9 +8,13 @@ router.get("/", (_req, res) => {
   res.send(patientService.getEntriesWithoutSsn());
 });
 
+router.get("/:id", (req, res) => {
+  res.send(patientService.getOnePatient(req.params.id));
+});
+
 router.post("/", (req, res) => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment
     const newPatient = toNewPatientEntry(req.body);
     const addedPatient = patientService.addPatient(newPatient);
     res.json(addedPatient);
