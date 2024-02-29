@@ -2,6 +2,7 @@ import React from "react";
 import { Patient } from "../../types";
 import { Paper, Typography } from "@mui/material";
 import { Female, Male, Transgender } from "@mui/icons-material";
+import PatientEntries  from '../PatientEntries'
 
 import patientService from "../../services/patients";
 
@@ -59,6 +60,7 @@ const PatientPage: React.FC<PatientPageProps> = ({ setPatientId }) => {
           <br />
           Date of birth: <b>{new Date(String(patient.dateOfBirth)).toLocaleDateString("fi-FI")}</b>
         </Typography>
+        <PatientEntries patient={patient}/>
       </Paper>
     </div>
   );
