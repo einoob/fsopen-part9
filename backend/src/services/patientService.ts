@@ -12,7 +12,7 @@ const getEntriesWithoutSsn = (): PatientDataWithoutSSn[] => {
     name,
     occupation,
     gender,
-    entries
+    entries,
   }));
 };
 
@@ -29,8 +29,19 @@ const addPatient = (entry: NewPatientEntry): Patient => {
 };
 
 const getOnePatient = (id: string): Patient | undefined => {
-  console.log(patients);
-  return patients.find((patient) => patient.id === id);
+  const patient = patients.find((patient) => patient.id === id);
+  if (patient && patient.entries) {
+    patient.entries.forEach((entry) => {
+      if (
+        entry.type != "HealthCheck" &&
+        entry.type !== "Hospital" &&
+        entry.type !== "OccupationalHealthcare"
+      ) {
+        throw new Error("Illegal type in entry");
+      }
+    });
+  }
+  return patient;
 };
 
 export default {

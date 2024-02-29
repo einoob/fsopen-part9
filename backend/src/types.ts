@@ -10,8 +10,43 @@ export interface Diagnose {
   latin?: string;
 }
 
-export interface Entry {
+export enum HealthCheckRating {
+  "Healthy" = 0,
+  "LowRisk" = 1,
+  "HighRisk" = 2,
+  "CriticalRisk" = 3
+}
 
+export interface Entry {
+  id: string;
+  date: string;
+  type: "Hospital" | "OccupationalHealthcare" | "HealthCheck";
+  specialist: string;
+  description: string;
+  diagnosisCodes?: Array<string>;
+  employerName?: string;
+}
+
+export interface HospitalEntry extends Entry {
+  type: "Hospital";
+  discharge: {
+    date: string;
+    criteria: string;
+  }
+}
+
+export interface OccupationalHealthcareEntry extends Entry {
+  type: "OccupationalHealthcare";
+  employerName?: string;
+  sickLeave?: {
+    startDate: string;
+    endDate: string;
+  };
+}
+
+export interface HealthCheckEntry extends Entry {
+  type: "HealthCheck"
+  healthCheckRating?: HealthCheckRating;
 }
 
 export interface Patient {
@@ -21,8 +56,10 @@ export interface Patient {
   ssn?: string;
   gender: Gender;
   occupation: string;
-  entries: Entry[]
+  entries: Array<HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry>;
 }
+
+
 
 export type PatientDataWithoutSSn = Omit<Patient, "ssn">;
 
