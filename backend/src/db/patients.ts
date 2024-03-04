@@ -88,7 +88,7 @@ const data: Patient[] = [
         type: "HealthCheck",
         description:
           "Yearly control visit. Due to high cholesterol levels recommended to eat more vegetables.",
-        healthCheckRating: HealthCheckRating.LowRisk,
+        healthCheckRating: HealthCheckRating.CriticalRisk,
       },
     ],
   },
