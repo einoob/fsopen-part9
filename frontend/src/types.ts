@@ -17,6 +17,8 @@ export enum HealthCheckRating {
   "CriticalRisk" = 3
 }
 
+export type EntryType =  "Hospital" | "OccupationalHealthcare" | "HealthCheck";
+
 export interface Entry {
   id: string;
   date: string;
